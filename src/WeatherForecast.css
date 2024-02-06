@@ -1,0 +1,20 @@
+.forecastContainer {
+  margin: 20px 10px;
+}
+.days {
+  font-weight: bold;
+}
+.max {
+  color: rgb(129, 4, 246);
+}
+.icons .icon {
+  display: flex;
+  width: 80px;
+  margin-left: -5px;
+}
+.forecastContainer .row .days {
+  margin-left: 10px;
+}
+.forecastContainer .row .temperature {
+  margin-left: 5px;
+}
