@@ -3,6 +3,7 @@ import FormattedDate from "./FormattedDate";
 import FormattedTime from "./FormattedTime";
 import WeatherUnit from "./WeatherUnit";
 import Icon from "./Icon";
+
 export default function WeatherInfo(props) {
   return (
     <div className="row row-container">
@@ -13,7 +14,7 @@ export default function WeatherInfo(props) {
             <span className="date">
               <FormattedDate date={props.data.date} />
             </span>
-            <br />{" "}
+            <br />
             <span className="time">
               <FormattedTime date={props.data.time} />
             </span>
@@ -23,14 +24,14 @@ export default function WeatherInfo(props) {
         </ul>
       </div>
       <div className="col-2 icon">
-        <Icon code={props.data.icon} />
+        <Icon icon={props.data.icon} />
       </div>
       <div className="col-5">
         <ul className="weatherData">
-          <li className="weatherData">Visibility: {props.data.visibility}</li>
-          <li className="weatherData">Humidity: {props.data.humidity}%</li>
-          <li className="weatherData">WindSpeed: {props.data.wind}mph</li>
-          <li className="weatherData">Feels Like: {props.data.feelsLike}°c</li>
+          <li>Visibility: {props.data.visibility}</li>
+          <li>Humidity: {props.data.humidity}%</li>
+          <li>WindSpeed: {props.data.wind}mph</li>
+          <li>Feels Like: {props.data.feelsLike}°c</li>
         </ul>
       </div>
     </div>

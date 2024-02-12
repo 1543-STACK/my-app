@@ -37,7 +37,7 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    const apiKey = "df2a96865d539474be5";
+    const apiKey = "bcd4cf1d3b0a0df2a96865d539474be5";
     let lon = props.coord.lon;
     let lat = props.coord.lat;
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
