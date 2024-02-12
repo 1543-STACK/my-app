@@ -1,5 +1,5 @@
 import React from "react";
-import { WeatherSvg } from "weather-icons-animated";
+import Icon from "./Icon";
 export default function Icon(props) {
   const codeMapping = {
     "01d": "sunny",
