@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "./Icon";
+import ReactAnimatedWeather from "react-animated-weather";
 export default function Icon(props) {
   const codeMapping = {
     "01d": "sunny",
@@ -21,5 +21,12 @@ export default function Icon(props) {
     "50d": "fog",
     "50n": "fog",
   };
-  return <WeatherSvg state={codeMapping[props.code]} className="icon" />;
+  return (
+    <ReactAnimatedWeather
+      icon={codeMapping[props.code]}
+      color="#ffe200"
+      size={props.size}
+      animate={true}
+    />
+  );
 }
