@@ -1,32 +1,40 @@
 import React, { useState, useEffect } from "react";
-import "./WeatherForecast.css";
+
 import axios from "axios";
-import ForecastDay from "./ForecastDay";
+import "./WeatherForecast.css";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props) {
-  let [ready, setReady] = useState(false);
+  let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
 
   useEffect(() => {
-    setReady(false);
-  }, [props.coord]);
+    setLoaded(false);
+  }, [props.coordinates]);
 
   function handleResponse(response) {
     setForecast(response.data.daily);
-
-    setReady(true);
+    setLoaded(true);
   }
 
-  if (ready) {
+  function load() {
+    let apiKey = "3942at30b5e86c470ec01oad7babfcd0";
+    let longitude = props.coordinates.lon;
+    let latitude = props.coordinates.lat;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  if (loaded) {
     return (
-      <div className="WeatherForecast forecastContainer">
+      <div className="WeatherForecast">
         <div className="row">
-          <h4>Weekly Forecast</h4>
           {forecast.map(function (dailyForecast, index) {
-            if (index < 6) {
+            if (index < 5) {
               return (
-                <div className="col-2 icons" key={index}>
-                  <ForecastDay data={dailyForecast} />
+                <div className="col" key={index}>
+                  <WeatherForecastDay data={dailyForecast} />
                 </div>
               );
             } else {
@@ -37,11 +45,8 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    const apiKey = "bcd4cf1d3b0a0df2a96865d539474be5";
-    let lon = props.coord.lon;
-    let lat = props.coord.lat;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
+    load();
+
     return null;
   }
 }
